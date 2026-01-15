@@ -1,12 +1,16 @@
+import { useId } from 'react';
 import Button from '../Button';
 import classes from './styles.module.css';
 
 const SearchBar = () => {
+  const formId = useId();
   return (
     <div className={classes.container}>
-      <span className={classes.label}>what are you looking for?</span>
+      <label className={classes.label} htmlFor={formId}>
+        what are you looking for?
+      </label>
       <div className={classes.searchBar}>
-        <input className={classes.input} type='text' placeholder='Search by name...' />
+        <input id={formId} className={classes.input} type='text' placeholder='Search by name...' />
         <Button className={classes.button} label='Search' />
       </div>
     </div>

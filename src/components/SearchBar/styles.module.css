@@ -2,10 +2,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--spacing--sm);
-
-  @media (width > 768px) {
-    place-self: center;
-  }
+  place-self: center;
 }
 
 .label {
@@ -24,7 +21,8 @@
 }
 
 .input {
-  width: 100%;
+  min-width: 0;
+  width: min(100vw - 100px - 2 * var(--inline-spacing), 500px);
   height: 78px;
   box-sizing: border-box;
   border-radius: 20px;
@@ -34,10 +32,6 @@
   font-size: var(--font-size--lg);
   line-height: var(--line-height--lg);
   border: none;
-
-  @media (width > 768px) {
-    width: 500px;
-  }
 
   &::placeholder {
     color: #63666a;
