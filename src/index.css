@@ -46,3 +46,9 @@ body {
     grid-column: content;
   }
 }
+
+.header-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing--lg);
+}
