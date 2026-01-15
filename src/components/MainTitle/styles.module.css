@@ -1,0 +1,18 @@
+.title {
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 48px;
+  place-self: center;
+  color: #292929;
+  margin-block: 0 var(--spacing--xl);
+
+  @media (width > 600px) {
+    font-size: 60px;
+  }
+
+  .first-word {
+    background: linear-gradient(98.5deg, #ff784e, #fb347c);
+    background-clip: text;
+    color: transparent;
+  }
+}
