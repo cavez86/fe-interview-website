@@ -1,11 +1,13 @@
 import { useContext } from 'react';
-import DataContext from '../data/DataProvider';
+import FiltersContext from '../providers/FiltersProvider';
 
 export const useFilters = () => {
-  const context = useContext(DataContext);
+  const context = useContext(FiltersContext);
   if (!context) {
     throw new Error('useFilters must be used within a DataProvider');
   }
-  const { filters, setSearch, setRoleFilter } = context;
-  return { filters, setSearch, setRoleFilter };
+
+  const { role, search, setSearch, setRoleFilter } = context;
+
+  return { search, setSearch, roleFilter: role, setRoleFilter };
 };

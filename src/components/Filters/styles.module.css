@@ -14,3 +14,7 @@
   color: #63666a;
   text-transform: uppercase;
 }
+
+.active {
+  outline: 2px solid #63666a;
+}

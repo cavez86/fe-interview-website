@@ -1,6 +1,7 @@
 import Filters from './components/Filters';
 import MainTitle from './components/MainTitle';
 import SearchBar from './components/SearchBar';
+import UsersGrid from './components/UsersGrid';
 
 const App = () => {
   return (
@@ -8,9 +9,13 @@ const App = () => {
       <section className='header-section'>
         <MainTitle />
         <SearchBar />
+      </section>
+      <section>
         <Filters />
       </section>
-      <section>Hello, World!</section>
+      <section>
+        <UsersGrid />
+      </section>
     </main>
   );
 };

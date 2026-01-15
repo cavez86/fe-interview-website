@@ -1,13 +1,15 @@
 import { useId } from 'react';
+import { useFilters } from '../../hooks/useFilters';
 import Button from '../Button';
 import classes from './styles.module.css';
 
 const SearchBar = () => {
+  const { search, setSearch } = useFilters();
   const inputId = useId();
 
   const handleSubmit = (formData: FormData) => {
     const query = formData.get('search');
-    console.log(`Search query: ${query}`);
+    setSearch(query ? String(query) : null);
   };
 
   return (
@@ -16,7 +18,14 @@ const SearchBar = () => {
         what are you looking for?
       </label>
       <div className={classes.searchBar}>
-        <input id={inputId} className={classes.input} name='search' type='text' placeholder='Search by name...' />
+        <input
+          id={inputId}
+          className={classes.input}
+          name='search'
+          type='text'
+          placeholder='Search by name...'
+          defaultValue={search ?? ''}
+        />
         <Button className={classes.button} label='Search' type='submit' />
       </div>
     </form>

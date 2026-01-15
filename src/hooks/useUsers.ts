@@ -1,11 +1,19 @@
-import { useContext } from 'react';
-import DataContext from '../data/DataProvider';
+import { useMemo } from 'react';
+import { type User, users } from '../data/users';
+import { useFilters } from './useFilters';
 
 export const useUsers = () => {
-  const context = useContext(DataContext);
-  if (!context) {
-    throw new Error('useUsers must be used within a DataProvider');
-  }
-  const { users } = context;
-  return users;
+  const { roleFilter, search } = useFilters();
+
+  const filteredUsers = useMemo<User[]>(
+    () =>
+      users.filter((user) => {
+        const matchesSearch = !!search && user.name.toLowerCase().includes(search.toLowerCase());
+        const matchesRole = !roleFilter || user.role === roleFilter;
+        return matchesSearch && matchesRole;
+      }),
+    [search, roleFilter],
+  );
+
+  return filteredUsers;
 };
