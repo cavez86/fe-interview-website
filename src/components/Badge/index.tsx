@@ -1,5 +1,5 @@
 import type { JSX } from 'react';
-import type { Role } from '../data/roles';
+import type { Role } from '../../data/roles';
 import classes from './styles.module.css';
 
 export type BadgeProps = {

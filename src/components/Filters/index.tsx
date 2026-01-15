@@ -1,5 +1,5 @@
+import { ROLES, type Role } from '../../data/roles';
 import Badge from '../Badge';
-import { ROLES, type Role } from '../data/roles';
 
 import classes from './styles.module.css';
 
