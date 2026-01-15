@@ -18,6 +18,20 @@
   --spacing--md: 16px;
   --spacing--sm: 8px;
   --spacing--xs: 4px;
+
+  /* filter colors */
+  --filter-admin--text-color: #ffffff;
+  --filter-admin--bg-color: #003569;
+  --filter-editor--text-color: #ffffff;
+  --filter-editor--bg-color: #269085;
+  --filter-viewer--text-color: #ffffff;
+  --filter-viewer--bg-color: #5993b9;
+  --filter-guest--text-color: #ffffff;
+  --filter-guest--bg-color: #9f009f;
+  --filter-owner--text-color: #292929;
+  --filter-owner--bg-color: #ffffff;
+  --filter-inactive--text-color: #292929;
+  --filter-inactive--bg-color: #ffffff;
 }
 
 body {

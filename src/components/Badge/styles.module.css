@@ -1,0 +1,53 @@
+.badge {
+  background-color: var(--badge-bg-color);
+  color: var(--badge-text-color);
+  font-family: var(--font-family);
+  font-size: var(--font-size--sm);
+  padding: var(--spacing--xs) var(--spacing--md);
+  border-radius: 8px;
+  text-transform: uppercase;
+
+  &.admin {
+    --badge-bg-color: var(--filter-admin--bg-color);
+    --badge-text-color: var(--filter-admin--text-color);
+  }
+
+  &.editor {
+    --badge-bg-color: var(--filter-editor--bg-color);
+    --badge-text-color: var(--filter-editor--text-color);
+  }
+
+  &.viewer {
+    --badge-bg-color: var(--filter-viewer--bg-color);
+    --badge-text-color: var(--filter-viewer--text-color);
+  }
+
+  &.guest {
+    --badge-bg-color: var(--filter-guest--bg-color);
+    --badge-text-color: var(--filter-guest--text-color);
+  }
+
+  &.owner {
+    --badge-bg-color: var(--filter-owner--bg-color);
+    --badge-text-color: var(--filter-owner--text-color);
+  }
+
+  &.inactive {
+    --badge-bg-color: var(--filter-inactive--bg-color);
+    --badge-text-color: var(--filter-inactive--text-color);
+  }
+}
+
+button.badge {
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s ease-in-out;
+
+  &:hover,
+  &:focus-visible {
+    opacity: 0.9;
+  }
+  &:active {
+    opacity: 0.8;
+  }
+}

@@ -1,0 +1,16 @@
+.filters {
+  width: 100%;
+  border-bottom: 1px solid #63666a;
+  padding-block: var(--spacing--xl) var(--spacing--md);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing--sm);
+}
+
+.label {
+  font-family: var(--font-family);
+  font-size: var(--font-size--sm);
+  line-height: var(--line-height--lg);
+  color: #63666a;
+  text-transform: uppercase;
+}

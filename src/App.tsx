@@ -1,3 +1,4 @@
+import Filters from './components/Filters';
 import MainTitle from './components/MainTitle';
 import SearchBar from './components/SearchBar';
 
@@ -7,6 +8,7 @@ const App = () => {
       <section className='header-section'>
         <MainTitle />
         <SearchBar />
+        <Filters />
       </section>
       <section>Hello, World!</section>
     </main>
