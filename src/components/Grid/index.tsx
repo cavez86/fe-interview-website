@@ -1,8 +1,9 @@
+import { useMemo } from "react";
+import { filterUsers } from "../../data/users";
 import { useFilters } from "../../hooks/useFilters";
 import { useUsers } from "../../hooks/useUsers";
 import Button from "../Button";
 import Card from "../Card";
-
 import classes from "./styles.module.css";
 
 const Grid = () => {
@@ -13,6 +14,8 @@ const Grid = () => {
     setSearch(null);
     setRoleFilter(null);
   };
+
+  const filteredUsers = useMemo(() => filterUsers(users, role), [users, role]);
 
   if (loading) {
     return <p className={classes.message}>Loading users...</p>;
@@ -27,7 +30,7 @@ const Grid = () => {
     );
   }
 
-  if (search?.length && !users.length) {
+  if (search?.length && !filteredUsers.length) {
     return (
       <div className={classes.message}>
         <p>
@@ -40,7 +43,7 @@ const Grid = () => {
 
   return (
     <div className={classes.grid}>
-      {users.map((user) => (
+      {filteredUsers.map((user) => (
         <Card key={user.id} user={user} />
       ))}
     </div>

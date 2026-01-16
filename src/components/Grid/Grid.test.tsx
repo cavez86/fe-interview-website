@@ -24,10 +24,14 @@ describe("Grid component", () => {
       role: null,
       setRoleFilter: vi.fn(),
     });
-    vi.mocked(useUsers).mockReturnValue([
-      { id: 1, name: "User One", role: "ADMIN" },
-      { id: 2, name: "User Two", role: "EDITOR" },
-    ] as User[]);
+    vi.mocked(useUsers).mockReturnValue({
+      users: [
+        { id: 1, name: "User One", role: "ADMIN" },
+        { id: 2, name: "User Two", role: "EDITOR" },
+      ] as User[],
+      loading: false,
+      error: null,
+    });
 
     const { getByText } = render(<Grid />);
     expect(getByText("User One")).toBeInTheDocument();
@@ -43,7 +47,11 @@ describe("Grid component", () => {
       role: "ADMIN",
       setRoleFilter: setRoleFilterMock,
     });
-    vi.mocked(useUsers).mockReturnValue([] as User[]);
+    vi.mocked(useUsers).mockReturnValue({
+      users: [],
+      loading: false,
+      error: null,
+    });
 
     const { getByText } = render(<Grid />);
     const noResultsMessage = getByText(/No users/);
@@ -61,11 +69,56 @@ describe("Grid component", () => {
       role: "ADMIN",
       setRoleFilter: setRoleFilterMock,
     });
-    vi.mocked(useUsers).mockReturnValue([] as User[]);
+    vi.mocked(useUsers).mockReturnValue({
+      users: [],
+      loading: false,
+      error: null,
+    });
 
     const { getByRole } = render(<Grid />);
     const clearFiltersButton = getByRole("button", { name: "Clear filters" });
     clearFiltersButton.click();
+    expect(setSearchMock).toHaveBeenCalledWith(null);
+    expect(setRoleFilterMock).toHaveBeenCalledWith(null);
+  });
+
+  it("should render loading message when users are being fetched", () => {
+    vi.mocked(useFilters).mockReturnValue({
+      search: null,
+      setSearch: vi.fn(),
+      role: null,
+      setRoleFilter: vi.fn(),
+    });
+    vi.mocked(useUsers).mockReturnValue({
+      users: [],
+      loading: true,
+      error: null,
+    });
+
+    const { getByText } = render(<Grid />);
+    expect(getByText("Loading users...")).toBeInTheDocument();
+  });
+
+  it("should render error message when there is an error fetching users", () => {
+    const setSearchMock = vi.fn();
+    const setRoleFilterMock = vi.fn();
+    vi.mocked(useFilters).mockReturnValue({
+      search: null,
+      setSearch: setSearchMock,
+      role: null,
+      setRoleFilter: setRoleFilterMock,
+    });
+    vi.mocked(useUsers).mockReturnValue({
+      users: [],
+      loading: false,
+      error: new Error("Failed to fetch"),
+    });
+
+    const { getByText, getByRole } = render(<Grid />);
+    expect(getByText("Error loading users: Failed to fetch")).toBeInTheDocument();
+
+    const retryButton = getByRole("button", { name: "Retry" });
+    retryButton.click();
     expect(setSearchMock).toHaveBeenCalledWith(null);
     expect(setRoleFilterMock).toHaveBeenCalledWith(null);
   });
