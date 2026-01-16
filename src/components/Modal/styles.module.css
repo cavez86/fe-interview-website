@@ -17,7 +17,11 @@
   }
 }
 
+.form {
+  display: flex;
+  place-self: end;
+}
+
 .button {
-  align-self: end;
   height: 48px;
 }

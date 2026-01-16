@@ -19,10 +19,18 @@ const Modal = () => {
     }
   }, [user]);
 
+  const onModalClose = () => {
+    setTimeout(() => {
+      closeModal();
+    }, 500);
+  };
+
   return (
-    <dialog closedby='any' ref={modalRef} className={classes.modal} onClose={closeModal}>
+    <dialog closedby='any' ref={modalRef} className={classes.modal} onClose={onModalClose}>
       {user && <Card user={user} mode='detailed' />}
-      <Button label='Close' className={classes.button} onClick={closeModal} />
+      <form className={classes.form} method='dialog'>
+        <Button label='Close' className={classes.button} type='submit' />
+      </form>
     </dialog>
   );
 };
