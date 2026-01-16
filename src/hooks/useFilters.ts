@@ -9,5 +9,5 @@ export const useFilters = () => {
 
   const { role, search, setSearch, setRoleFilter } = context;
 
-  return { search, setSearch, roleFilter: role, setRoleFilter };
+  return { search, setSearch, role, setRoleFilter };
 };

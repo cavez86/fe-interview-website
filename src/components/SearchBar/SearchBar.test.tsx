@@ -10,7 +10,7 @@ describe('SearchBar component', () => {
     vi.mocked(useFilters).mockReturnValue({
       search: 'test',
       setSearch: vi.fn(),
-      roleFilter: null,
+      role: null,
       setRoleFilter: vi.fn(),
     });
     const { getByTestId } = render(<SearchBar />);
@@ -24,7 +24,7 @@ describe('SearchBar component', () => {
     vi.mocked(useFilters).mockReturnValue({
       search: '',
       setSearch: setSearchMock,
-      roleFilter: null,
+      role: null,
       setRoleFilter: vi.fn(),
     });
     const { getByRole, getByTestId } = render(<SearchBar />);

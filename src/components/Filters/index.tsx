@@ -5,7 +5,7 @@ import Badge from '../Badge';
 import classes from './styles.module.css';
 
 const Filters = () => {
-  const { search, roleFilter, setRoleFilter } = useFilters();
+  const { search, role: roleFilter, setRoleFilter } = useFilters();
 
   const handleClick = (role: Role) => () => {
     setRoleFilter(role === roleFilter ? null : role);

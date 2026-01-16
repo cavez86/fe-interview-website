@@ -10,7 +10,7 @@ describe('Filters component', () => {
     vi.mocked(useFilters).mockReturnValue({
       search: '',
       setSearch: vi.fn(),
-      roleFilter: null,
+      role: null,
       setRoleFilter: vi.fn(),
     });
     const { container } = render(<Filters />);
@@ -21,7 +21,7 @@ describe('Filters component', () => {
     vi.mocked(useFilters).mockReturnValue({
       search: 'test',
       setSearch: vi.fn(),
-      roleFilter: 'ADMIN',
+      role: 'ADMIN',
       setRoleFilter: vi.fn(),
     });
     const { getByText } = render(<Filters />);
@@ -36,7 +36,7 @@ describe('Filters component', () => {
     vi.mocked(useFilters).mockReturnValue({
       search: 'test',
       setSearch: vi.fn(),
-      roleFilter: 'ADMIN',
+      role: 'ADMIN',
       setRoleFilter: setRoleFilterMock,
     });
     const { getByText } = render(<Filters />);
