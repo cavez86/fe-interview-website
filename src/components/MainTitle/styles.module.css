@@ -1,14 +1,10 @@
 .title {
   font-family: var(--font-family);
   font-weight: 700;
-  font-size: 48px;
+  font-size: clamp(32px, 10vw, 60px);
   place-self: center;
   color: #292929;
   margin: 0;
-
-  @media (width > 600px) {
-    font-size: 60px;
-  }
 
   .first-word {
     background: linear-gradient(98.5deg, #ff784e, #fb347c);
