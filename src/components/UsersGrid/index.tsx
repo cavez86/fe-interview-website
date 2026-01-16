@@ -1,13 +1,12 @@
 import { useUsers } from '../../hooks/useUsers';
+import UserCard from '../UserCard';
 
 const UsersGrid = () => {
   const users = useUsers();
   return (
     <div>
       {users.map((user) => (
-        <div key={user.id}>
-          {user.name} - {user.role}
-        </div>
+        <UserCard key={user.id} user={user} />
       ))}
     </div>
   );

@@ -1,0 +1,55 @@
+.card {
+  background-color: #fff;
+  border: 1px solid #d3d3dc;
+  border-radius: 20px;
+  padding: var(--spacing--md);
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing--sm);
+
+  font-family: var(--font-family);
+  color: #63666a;
+}
+
+.badge {
+  align-self: flex-start;
+}
+
+.name {
+  font-size: var(--font-size--xl);
+  line-height: var(--line-height--md);
+  font-weight: 500;
+  color: #1b2134;
+  padding-block: var(--spacing--xs);
+}
+
+.role {
+  font-size: var(--font-size--md);
+  line-height: var(--line-height--lg);
+  font-weight: 400;
+}
+
+.label {
+  font-size: var(--font-size--sm);
+  line-height: var(--line-height--lg);
+  font-weight: 300;
+}
+
+.team {
+  font-size: var(--font-size--sm);
+  line-height: var(--line-height--lg);
+  font-weight: 500;
+}
+
+.email {
+  font-size: var(--font-size--sm);
+  line-height: var(--line-height--lg);
+  font-weight: 500;
+  color: #fb6232;
+  text-decoration: underline;
+}
+
+.button {
+  height: 48px;
+}
