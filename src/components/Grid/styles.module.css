@@ -7,7 +7,7 @@
   min-height: 50vh;
 }
 
-.no-results {
+.message {
   font-family: var(--font-family);
   font-size: var(--font-size--md);
   line-height: var(--line-height--md);

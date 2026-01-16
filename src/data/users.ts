@@ -76,9 +76,26 @@ export const allUsers: User[] = [
   },
 ];
 
-export const filterUsers = (users: User[], search: string | null, role: Role | null): User[] =>
-  users.filter((user) => {
-    const matchesSearch = !!search && user.name.toLowerCase().includes(search.toLowerCase());
-    const matchesRole = !role || user.role === role;
-    return matchesSearch && matchesRole;
-  });
+const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
+export const searchUsers = async (
+  search: string | null,
+  options?: { signal?: AbortSignal },
+): Promise<User[]> => {
+  if (!search) return [];
+
+  console.log(`Searching users with term: "${search}"`);
+  options?.signal?.throwIfAborted();
+
+  const fails = Math.random() < 0.1;
+  if (fails) {
+    throw new Error("Failed to fetch users");
+  }
+
+  options?.signal?.throwIfAborted();
+  await wait(500);
+  return allUsers.filter((user) => user.name.toLowerCase().includes(search.toLowerCase()));
+};
+
+export const filterUsers = (users: User[], role: Role | null): User[] =>
+  users.filter((user) => !role || user.role === role);

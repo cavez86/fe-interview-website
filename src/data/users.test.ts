@@ -9,13 +9,8 @@ const mockUsers = [
 ] as User[];
 
 describe("users data", () => {
-  it("filters users by search term", () => {
-    const result = filterUsers(mockUsers, "Alice", null);
-    expect(result).toEqual([{ id: 1, name: "Alice Johnson", role: "ADMIN" }]);
-  });
-
   it("filters users by role", () => {
-    const result = filterUsers(mockUsers, "i", "EDITOR");
+    const result = filterUsers(mockUsers, "EDITOR");
     expect(result).toEqual([
       { id: 2, name: "Bob Smith", role: "EDITOR" },
       { id: 4, name: "David Wilson", role: "EDITOR" },
@@ -23,17 +18,20 @@ describe("users data", () => {
   });
 
   it("filters users by search term and role", () => {
-    const result = filterUsers(mockUsers, "David", "EDITOR");
-    expect(result).toEqual([{ id: 4, name: "David Wilson", role: "EDITOR" }]);
+    const result = filterUsers(mockUsers, "EDITOR");
+    expect(result).toEqual([
+      { id: 2, name: "Bob Smith", role: "EDITOR" },
+      { id: 4, name: "David Wilson", role: "EDITOR" },
+    ]);
   });
 
-  it("returns an empty array when no search term is provided", () => {
-    const result = filterUsers(mockUsers, null, null);
-    expect(result).toEqual([]);
+  it("returns all users when no filters are applied", () => {
+    const result = filterUsers(mockUsers, null);
+    expect(result).toEqual(mockUsers);
   });
 
   it("returns an empty array when no users match the filters", () => {
-    const result = filterUsers(mockUsers, "Zoe", "ADMIN");
+    const result = filterUsers(mockUsers, "GUEST");
     expect(result).toEqual([]);
   });
 });

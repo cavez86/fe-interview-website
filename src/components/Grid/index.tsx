@@ -7,16 +7,29 @@ import classes from "./styles.module.css";
 
 const Grid = () => {
   const { search, role, setSearch, setRoleFilter } = useFilters();
-  const users = useUsers();
+  const { users, loading, error } = useUsers();
 
   const resetFilters = () => {
     setSearch(null);
     setRoleFilter(null);
   };
 
+  if (loading) {
+    return <p className={classes.message}>Loading users...</p>;
+  }
+
+  if (error) {
+    return (
+      <div className={classes.message}>
+        <p>Error loading users: {error.message}</p>
+        <Button label="Retry" className={classes.button} onClick={resetFilters} />
+      </div>
+    );
+  }
+
   if (search?.length && !users.length) {
     return (
-      <div className={classes.noResults}>
+      <div className={classes.message}>
         <p>
           No users found for "{search}" {role && `with role "${role}"`}
         </p>
