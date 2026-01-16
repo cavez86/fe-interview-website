@@ -1,19 +1,43 @@
 .modal {
+  --transition-duration: 0.2s;
+
   background-color: #fff;
   border: none;
   border-radius: 20px;
   padding: var(--spacing--xl);
-
-  &[open] {
-    display: flex;
-  }
-
   flex-direction: column;
   gap: var(--spacing--md);
 
+  opacity: 0;
+  transition-property: display opacity;
+  transition-duration: var(--transition-duration);
+  transition-behavior: allow-discrete;
+
+  &[open] {
+    opacity: 1;
+    display: flex;
+
+    @starting-style {
+      opacity: 0;
+    }
+  }
+
   &::backdrop {
+    transition-property: opacity display overlay;
+    transition-duration: var(--transition-duration);
+    transition-behavior: allow-discrete;
+    opacity: 0;
     background-color: #292929;
+  }
+
+  &[open]::backdrop {
     opacity: 0.7;
+  }
+
+  @starting-style {
+    &[open]::backdrop {
+      opacity: 0;
+    }
   }
 }
 
