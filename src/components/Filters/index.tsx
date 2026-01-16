@@ -18,16 +18,18 @@ const Filters = () => {
   return (
     <div className={classes.filters}>
       <span className={classes.label}>Filter by:</span>
-      {ROLES.map((role) => (
-        <Badge
-          onClick={handleClick(role)}
-          key={role}
-          role={role}
-          className={role === roleFilter ? classes.active : ''}
-          tag='button'
-          type='button'
-        />
-      ))}
+      <div className={classes.list}>
+        {ROLES.map((role) => (
+          <Badge
+            onClick={handleClick(role)}
+            key={role}
+            role={role}
+            className={role === roleFilter ? classes.active : ''}
+            tag='button'
+            type='button'
+          />
+        ))}
+      </div>
     </div>
   );
 };

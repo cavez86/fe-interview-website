@@ -2,9 +2,18 @@
   width: 100%;
   border-bottom: 1px solid #63666a;
   padding-block: var(--spacing--xl) var(--spacing--md);
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr;
   align-items: center;
   gap: var(--spacing--sm);
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing--sm);
+  list-style: none;
+  margin: 0;
 }
 
 .label {
