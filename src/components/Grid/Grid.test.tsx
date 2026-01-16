@@ -1,0 +1,64 @@
+import { render } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+import type { User } from '../../data/users';
+import { useFilters } from '../../hooks/useFilters';
+import { useUsers } from '../../hooks/useUsers';
+import Grid from '.';
+
+vi.mock('../../hooks/useFilters');
+vi.mock('../../hooks/useUsers');
+
+describe('Grid component', () => {
+  it('should render the grid with filtered users', () => {
+    vi.mocked(useFilters).mockReturnValue({
+      search: null,
+      setSearch: vi.fn(),
+      role: null,
+      setRoleFilter: vi.fn(),
+    });
+    vi.mocked(useUsers).mockReturnValue([
+      { id: 1, name: 'User One', role: 'ADMIN' },
+      { id: 2, name: 'User Two', role: 'EDITOR' },
+    ] as User[]);
+
+    const { getByText } = render(<Grid />);
+    expect(getByText('User One')).toBeInTheDocument();
+    expect(getByText('User Two')).toBeInTheDocument();
+  });
+
+  it('should render no results message when no users match the search', () => {
+    const setSearchMock = vi.fn();
+    const setRoleFilterMock = vi.fn();
+    vi.mocked(useFilters).mockReturnValue({
+      search: 'Nonexistent User',
+      setSearch: setSearchMock,
+      role: 'ADMIN',
+      setRoleFilter: setRoleFilterMock,
+    });
+    vi.mocked(useUsers).mockReturnValue([] as User[]);
+
+    const { getByText } = render(<Grid />);
+    const noResultsMessage = getByText(/No users/);
+    expect(noResultsMessage).toBeInTheDocument();
+    expect(noResultsMessage).toHaveTextContent('Nonexistent User');
+    expect(noResultsMessage).toHaveTextContent('ADMIN');
+  });
+
+  it('should call resetFilters when Clear filters button is clicked', () => {
+    const setSearchMock = vi.fn();
+    const setRoleFilterMock = vi.fn();
+    vi.mocked(useFilters).mockReturnValue({
+      search: 'Nonexistent User',
+      setSearch: setSearchMock,
+      role: 'ADMIN',
+      setRoleFilter: setRoleFilterMock,
+    });
+    vi.mocked(useUsers).mockReturnValue([] as User[]);
+
+    const { getByRole } = render(<Grid />);
+    const clearFiltersButton = getByRole('button', { name: 'Clear filters' });
+    clearFiltersButton.click();
+    expect(setSearchMock).toHaveBeenCalledWith(null);
+    expect(setRoleFilterMock).toHaveBeenCalledWith(null);
+  });
+});
