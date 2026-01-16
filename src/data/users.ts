@@ -10,7 +10,7 @@ export type User = {
   details: string;
 };
 
-export const users: User[] = [
+export const allUsers: User[] = [
   {
     id: 1,
     role: 'ADMIN',
@@ -75,3 +75,10 @@ export const users: User[] = [
     details: 'Serena is a talented product designer with a focus on marketing.',
   },
 ];
+
+export const filterUsers = (users: User[], search: string | null, role: Role | null): User[] =>
+  users.filter((user) => {
+    const matchesSearch = !!search && user.name.toLowerCase().includes(search.toLowerCase());
+    const matchesRole = !role || user.role === role;
+    return matchesSearch && matchesRole;
+  });
