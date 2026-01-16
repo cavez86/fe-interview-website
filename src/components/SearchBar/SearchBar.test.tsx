@@ -38,4 +38,47 @@ describe('SearchBar component', () => {
 
     expect(setSearchMock).toHaveBeenCalledWith('new search');
   });
+
+  it('should update input value on change', () => {
+    vi.mocked(useFilters).mockReturnValue({
+      search: '',
+      setSearch: vi.fn(),
+      role: null,
+      setRoleFilter: vi.fn(),
+    });
+    const { getByTestId } = render(<SearchBar />);
+    const input = getByTestId('search-input') as HTMLInputElement;
+    act(() => {
+      input.value = 'updated value';
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+    });
+
+    expect(input.value).toBe('updated value');
+  });
+
+  it('should reflect external search changes', () => {
+    vi.mocked(useFilters).mockReturnValue({
+      search: 'initial',
+      setSearch: vi.fn(),
+      role: null,
+      setRoleFilter: vi.fn(),
+    });
+    const { getByTestId, rerender } = render(<SearchBar />);
+    const input = getByTestId('search-input') as HTMLInputElement;
+
+    expect(input.value).toBe('initial');
+
+    vi.mocked(useFilters).mockReturnValue({
+      search: 'updated',
+      setSearch: vi.fn(),
+      role: null,
+      setRoleFilter: vi.fn(),
+    });
+
+    act(() => {
+      rerender(<SearchBar />);
+    });
+
+    expect(input.value).toBe('updated');
+  });
 });
