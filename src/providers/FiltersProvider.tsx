@@ -11,7 +11,7 @@ export type FiltersState = {
 const FiltersContext = createContext<FiltersState | null>(null);
 
 export const FiltersProvider = ({ children }: { children: ReactNode }) => {
-  const [search, setSearch] = useState<string | null>('a');
+  const [search, setSearch] = useState<string | null>(null);
   const [role, setRoleFilter] = useState<Role | null>(null);
 
   const contextValue = useMemo<FiltersState>(
