@@ -24,7 +24,7 @@
   padding-block: var(--spacing--xs);
 }
 
-.role {
+.title {
   font-size: var(--font-size--md);
   line-height: var(--line-height--lg);
   font-weight: 400;

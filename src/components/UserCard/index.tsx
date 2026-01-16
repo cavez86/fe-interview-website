@@ -13,7 +13,7 @@ const UserCard = ({ user }: UserCardProps) => {
       <Badge tag='span' role={user.role} className={classes.badge} />
       <div>
         <div className={classes.name}>{user.name}</div>
-        <div className={classes.role}>{user.title}</div>
+        <div className={classes.title}>{user.title}</div>
       </div>
 
       <div>
