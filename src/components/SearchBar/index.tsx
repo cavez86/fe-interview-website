@@ -13,7 +13,7 @@ const SearchBar = () => {
   };
 
   return (
-    <form className={classes.container} action={handleSubmit}>
+    <form className={classes.container} action={handleSubmit} data-testid='search-form'>
       <label className={classes.label} htmlFor={inputId}>
         what are you looking for?
       </label>
@@ -23,6 +23,7 @@ const SearchBar = () => {
           className={classes.input}
           name='search'
           type='text'
+          data-testid='search-input'
           placeholder='Search by name...'
           defaultValue={search ?? ''}
         />
