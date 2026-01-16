@@ -1,15 +1,22 @@
 import type { User } from '../../data/users';
+import { useModal } from '../../hooks/useModal';
 import Badge from '../Badge';
 import Button from '../Button';
 import classes from './styles.module.css';
 
 type CardProps = {
   user: User;
+  mode?: 'compact' | 'detailed';
 };
 
-const Card = ({ user }: CardProps) => {
+const Card = ({ user, mode = 'compact' }: CardProps) => {
+  const { openModal } = useModal();
+  const handleClick = () => {
+    openModal(user);
+  };
+
   return (
-    <div className={classes.card}>
+    <div className={`${classes.card} ${classes[mode]}`}>
       <Badge tag='span' role={user.role} className={classes.badge} />
       <div>
         <div className={classes.name}>{user.name}</div>
@@ -18,15 +25,22 @@ const Card = ({ user }: CardProps) => {
 
       <div>
         <div className={classes.label}>Team:</div>
-        <div className={classes.team}>{user.team}</div>
+        <div className={classes.text}>{user.team}</div>
       </div>
 
       <div>
         <div className={classes.label}>Contact information:</div>
-        <div className={classes.email}>{user.email}</div>
+        <div className={`${classes.email} ${classes.text}`}>{user.email}</div>
       </div>
 
-      <Button label='View details' className={classes.button} />
+      {mode === 'detailed' && (
+        <div>
+          <div className={classes.label}>Other details:</div>
+          <div className={classes.text}>{user.details}</div>
+        </div>
+      )}
+
+      {mode === 'compact' && <Button label='View details' className={classes.button} onClick={handleClick} />}
     </div>
   );
 };

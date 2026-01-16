@@ -1,6 +1,7 @@
 import Filters from './components/Filters';
 import Grid from './components/Grid';
 import MainTitle from './components/MainTitle';
+import Modal from './components/Modal';
 import SearchBar from './components/SearchBar';
 
 const App = () => {
@@ -15,6 +16,7 @@ const App = () => {
       </section>
       <section>
         <Grid />
+        <Modal />
       </section>
     </main>
   );

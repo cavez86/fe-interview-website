@@ -2,13 +2,21 @@ import { render } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import type { User } from '../../data/users';
 import { useFilters } from '../../hooks/useFilters';
+import { useModal } from '../../hooks/useModal';
 import { useUsers } from '../../hooks/useUsers';
 import Grid from '.';
 
 vi.mock('../../hooks/useFilters');
 vi.mock('../../hooks/useUsers');
+vi.mock('../../hooks/useModal');
 
 describe('Grid component', () => {
+  vi.mocked(useModal).mockReturnValue({
+    user: null,
+    openModal: vi.fn(),
+    closeModal: vi.fn(),
+  });
+
   it('should render the grid with filtered users', () => {
     vi.mocked(useFilters).mockReturnValue({
       search: null,

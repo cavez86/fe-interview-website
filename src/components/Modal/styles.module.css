@@ -1,0 +1,23 @@
+.modal {
+  background-color: #fff;
+  border: none;
+  border-radius: 20px;
+  padding: var(--spacing--xl);
+
+  &[open] {
+    display: flex;
+  }
+
+  flex-direction: column;
+  gap: var(--spacing--md);
+
+  &::backdrop {
+    background-color: #292929;
+    opacity: 0.7;
+  }
+}
+
+.button {
+  align-self: end;
+  height: 48px;
+}

@@ -1,6 +1,5 @@
 .card {
   background-color: #fff;
-  border: 1px solid #d3d3dc;
   border-radius: 20px;
   padding: var(--spacing--md);
 
@@ -10,6 +9,14 @@
 
   font-family: var(--font-family);
   color: #63666a;
+
+  &.compact {
+    border: 1px solid #d3d3dc;
+  }
+
+  &.detailed {
+    padding: 0;
+  }
 }
 
 .badge {
@@ -36,16 +43,13 @@
   font-weight: 300;
 }
 
-.team {
+.text {
   font-size: var(--font-size--sm);
   line-height: var(--line-height--lg);
   font-weight: 500;
 }
 
 .email {
-  font-size: var(--font-size--sm);
-  line-height: var(--line-height--lg);
-  font-weight: 500;
   color: #fb6232;
   text-decoration: underline;
 }
