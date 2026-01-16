@@ -1,14 +1,14 @@
-import { act, render } from '@testing-library/react';
-import { describe, expect, it, vi } from 'vitest';
-import { useFilters } from '../../hooks/useFilters';
-import Filters from '.';
+import { act, render } from "@testing-library/react";
+import { describe, expect, it, vi } from "vitest";
+import { useFilters } from "../../hooks/useFilters";
+import Filters from ".";
 
-vi.mock('../../hooks/useFilters');
+vi.mock("../../hooks/useFilters");
 
-describe('Filters component', () => {
-  it('should render null when no search term is provided', () => {
+describe("Filters component", () => {
+  it("should render null when no search term is provided", () => {
     vi.mocked(useFilters).mockReturnValue({
-      search: '',
+      search: "",
       setSearch: vi.fn(),
       role: null,
       setRoleFilter: vi.fn(),
@@ -17,31 +17,31 @@ describe('Filters component', () => {
     expect(container).toBeEmptyDOMElement();
   });
 
-  it('should render filter badges when a search term is provided', () => {
+  it("should render filter badges when a search term is provided", () => {
     vi.mocked(useFilters).mockReturnValue({
-      search: 'test',
+      search: "test",
       setSearch: vi.fn(),
-      role: 'ADMIN',
+      role: "ADMIN",
       setRoleFilter: vi.fn(),
     });
     const { getByText } = render(<Filters />);
-    expect(getByText('Filter by:')).toBeInTheDocument();
-    expect(getByText('ADMIN')).toBeInTheDocument();
-    expect(getByText('EDITOR')).toBeInTheDocument();
-    expect(getByText('VIEWER')).toBeInTheDocument();
+    expect(getByText("Filter by:")).toBeInTheDocument();
+    expect(getByText("ADMIN")).toBeInTheDocument();
+    expect(getByText("EDITOR")).toBeInTheDocument();
+    expect(getByText("VIEWER")).toBeInTheDocument();
   });
 
-  it('should call setRoleFilter with correct values when badges are clicked', () => {
+  it("should call setRoleFilter with correct values when badges are clicked", () => {
     const setRoleFilterMock = vi.fn();
     vi.mocked(useFilters).mockReturnValue({
-      search: 'test',
+      search: "test",
       setSearch: vi.fn(),
-      role: 'ADMIN',
+      role: "ADMIN",
       setRoleFilter: setRoleFilterMock,
     });
     const { getByText } = render(<Filters />);
-    const adminBadge = getByText('ADMIN');
-    const editorBadge = getByText('EDITOR');
+    const adminBadge = getByText("ADMIN");
+    const editorBadge = getByText("EDITOR");
 
     act(() => {
       adminBadge.click();
@@ -51,6 +51,6 @@ describe('Filters component', () => {
     act(() => {
       editorBadge.click();
     });
-    expect(setRoleFilterMock).toHaveBeenCalledWith('EDITOR');
+    expect(setRoleFilterMock).toHaveBeenCalledWith("EDITOR");
   });
 });

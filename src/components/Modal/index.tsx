@@ -1,8 +1,8 @@
-import { useEffect, useRef } from 'react';
-import { useModal } from '../../hooks/useModal';
-import Button from '../Button';
-import Card from '../Card';
-import classes from './styles.module.css';
+import { useEffect, useRef } from "react";
+import { useModal } from "../../hooks/useModal";
+import Button from "../Button";
+import Card from "../Card";
+import classes from "./styles.module.css";
 
 const Modal = () => {
   const modalRef = useRef<HTMLDialogElement>(null);
@@ -26,10 +26,10 @@ const Modal = () => {
   };
 
   return (
-    <dialog closedby='any' ref={modalRef} className={classes.modal} onClose={onModalClose}>
-      {user && <Card user={user} mode='detailed' />}
-      <form className={classes.form} method='dialog'>
-        <Button label='Close' className={classes.button} type='submit' />
+    <dialog closedby="any" ref={modalRef} className={classes.modal} onClose={onModalClose}>
+      {user && <Card user={user} mode="detailed" />}
+      <form className={classes.form} method="dialog">
+        <Button label="Close" className={classes.button} type="submit" />
       </form>
     </dialog>
   );

@@ -1,23 +1,23 @@
-import { render } from '@testing-library/react';
-import { describe, expect, it, vi } from 'vitest';
-import type { User } from '../../data/users';
-import { useFilters } from '../../hooks/useFilters';
-import { useModal } from '../../hooks/useModal';
-import { useUsers } from '../../hooks/useUsers';
-import Grid from '.';
+import { render } from "@testing-library/react";
+import { describe, expect, it, vi } from "vitest";
+import type { User } from "../../data/users";
+import { useFilters } from "../../hooks/useFilters";
+import { useModal } from "../../hooks/useModal";
+import { useUsers } from "../../hooks/useUsers";
+import Grid from ".";
 
-vi.mock('../../hooks/useFilters');
-vi.mock('../../hooks/useUsers');
-vi.mock('../../hooks/useModal');
+vi.mock("../../hooks/useFilters");
+vi.mock("../../hooks/useUsers");
+vi.mock("../../hooks/useModal");
 
-describe('Grid component', () => {
+describe("Grid component", () => {
   vi.mocked(useModal).mockReturnValue({
     user: null,
     openModal: vi.fn(),
     closeModal: vi.fn(),
   });
 
-  it('should render the grid with filtered users', () => {
+  it("should render the grid with filtered users", () => {
     vi.mocked(useFilters).mockReturnValue({
       search: null,
       setSearch: vi.fn(),
@@ -25,22 +25,22 @@ describe('Grid component', () => {
       setRoleFilter: vi.fn(),
     });
     vi.mocked(useUsers).mockReturnValue([
-      { id: 1, name: 'User One', role: 'ADMIN' },
-      { id: 2, name: 'User Two', role: 'EDITOR' },
+      { id: 1, name: "User One", role: "ADMIN" },
+      { id: 2, name: "User Two", role: "EDITOR" },
     ] as User[]);
 
     const { getByText } = render(<Grid />);
-    expect(getByText('User One')).toBeInTheDocument();
-    expect(getByText('User Two')).toBeInTheDocument();
+    expect(getByText("User One")).toBeInTheDocument();
+    expect(getByText("User Two")).toBeInTheDocument();
   });
 
-  it('should render no results message when no users match the search', () => {
+  it("should render no results message when no users match the search", () => {
     const setSearchMock = vi.fn();
     const setRoleFilterMock = vi.fn();
     vi.mocked(useFilters).mockReturnValue({
-      search: 'Nonexistent User',
+      search: "Nonexistent User",
       setSearch: setSearchMock,
-      role: 'ADMIN',
+      role: "ADMIN",
       setRoleFilter: setRoleFilterMock,
     });
     vi.mocked(useUsers).mockReturnValue([] as User[]);
@@ -48,23 +48,23 @@ describe('Grid component', () => {
     const { getByText } = render(<Grid />);
     const noResultsMessage = getByText(/No users/);
     expect(noResultsMessage).toBeInTheDocument();
-    expect(noResultsMessage).toHaveTextContent('Nonexistent User');
-    expect(noResultsMessage).toHaveTextContent('ADMIN');
+    expect(noResultsMessage).toHaveTextContent("Nonexistent User");
+    expect(noResultsMessage).toHaveTextContent("ADMIN");
   });
 
-  it('should call resetFilters when Clear filters button is clicked', () => {
+  it("should call resetFilters when Clear filters button is clicked", () => {
     const setSearchMock = vi.fn();
     const setRoleFilterMock = vi.fn();
     vi.mocked(useFilters).mockReturnValue({
-      search: 'Nonexistent User',
+      search: "Nonexistent User",
       setSearch: setSearchMock,
-      role: 'ADMIN',
+      role: "ADMIN",
       setRoleFilter: setRoleFilterMock,
     });
     vi.mocked(useUsers).mockReturnValue([] as User[]);
 
     const { getByRole } = render(<Grid />);
-    const clearFiltersButton = getByRole('button', { name: 'Clear filters' });
+    const clearFiltersButton = getByRole("button", { name: "Clear filters" });
     clearFiltersButton.click();
     expect(setSearchMock).toHaveBeenCalledWith(null);
     expect(setRoleFilterMock).toHaveBeenCalledWith(null);

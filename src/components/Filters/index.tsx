@@ -1,8 +1,8 @@
-import { ROLES, type Role } from '../../data/roles';
-import { useFilters } from '../../hooks/useFilters';
-import Badge from '../Badge';
+import { ROLES, type Role } from "../../data/roles";
+import { useFilters } from "../../hooks/useFilters";
+import Badge from "../Badge";
 
-import classes from './styles.module.css';
+import classes from "./styles.module.css";
 
 const Filters = () => {
   const { search, role: roleFilter, setRoleFilter } = useFilters();
@@ -24,9 +24,9 @@ const Filters = () => {
             onClick={handleClick(role)}
             key={role}
             role={role}
-            className={role === roleFilter ? classes.active : ''}
-            tag='button'
-            type='button'
+            className={role === roleFilter ? classes.active : ""}
+            tag="button"
+            type="button"
           />
         ))}
       </div>

@@ -1,6 +1,6 @@
-import { useMemo } from 'react';
-import { allUsers, filterUsers } from '../data/users';
-import { useFilters } from './useFilters';
+import { useMemo } from "react";
+import { allUsers, filterUsers } from "../data/users";
+import { useFilters } from "./useFilters";
 
 export const useUsers = () => {
   const { role, search } = useFilters();

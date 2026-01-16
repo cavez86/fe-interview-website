@@ -1,5 +1,5 @@
-import { createContext, type ReactNode, useCallback, useMemo, useState } from 'react';
-import type { User } from '../data/users';
+import { createContext, type ReactNode, useCallback, useMemo, useState } from "react";
+import type { User } from "../data/users";
 
 type ModalState = {
   user: User | null;

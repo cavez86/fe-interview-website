@@ -1,5 +1,5 @@
-import { createContext, type ReactNode, useMemo, useState } from 'react';
-import type { Role } from '../data/roles';
+import { createContext, type ReactNode, useMemo, useState } from "react";
+import type { Role } from "../data/roles";
 
 export type FiltersState = {
   search: string | null;
