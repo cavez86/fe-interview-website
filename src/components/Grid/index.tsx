@@ -1,11 +1,11 @@
 import { useFilters } from '../../hooks/useFilters';
 import { useUsers } from '../../hooks/useUsers';
 import Button from '../Button';
-import UserCard from '../UserCard';
+import Card from '../Card';
 
 import classes from './styles.module.css';
 
-const UsersGrid = () => {
+const Grid = () => {
   const { search, role, setSearch, setRoleFilter } = useFilters();
   const users = useUsers();
 
@@ -28,10 +28,10 @@ const UsersGrid = () => {
   return (
     <div className={classes.grid}>
       {users.map((user) => (
-        <UserCard key={user.id} user={user} />
+        <Card key={user.id} user={user} />
       ))}
     </div>
   );
 };
 
-export default UsersGrid;
+export default Grid;

@@ -1,7 +1,7 @@
 import Filters from './components/Filters';
+import Grid from './components/Grid';
 import MainTitle from './components/MainTitle';
 import SearchBar from './components/SearchBar';
-import UsersGrid from './components/UsersGrid';
 
 const App = () => {
   return (
@@ -14,7 +14,7 @@ const App = () => {
         <Filters />
       </section>
       <section>
-        <UsersGrid />
+        <Grid />
       </section>
     </main>
   );

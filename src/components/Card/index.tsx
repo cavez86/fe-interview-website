@@ -3,11 +3,11 @@ import Badge from '../Badge';
 import Button from '../Button';
 import classes from './styles.module.css';
 
-type UserCardProps = {
+type CardProps = {
   user: User;
 };
 
-const UserCard = ({ user }: UserCardProps) => {
+const Card = ({ user }: CardProps) => {
   return (
     <div className={classes.card}>
       <Badge tag='span' role={user.role} className={classes.badge} />
@@ -31,4 +31,4 @@ const UserCard = ({ user }: UserCardProps) => {
   );
 };
 
-export default UserCard;
+export default Card;
