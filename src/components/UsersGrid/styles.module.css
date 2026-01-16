@@ -6,3 +6,12 @@
   margin-block: var(--spacing--lg);
   min-height: 50vh;
 }
+
+.no-results {
+  font-family: var(--font-family);
+  font-size: var(--font-size--md);
+  line-height: var(--line-height--md);
+  color: #63666a;
+  text-align: center;
+  margin-block: var(--spacing--xl);
+}
