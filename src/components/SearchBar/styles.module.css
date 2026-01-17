@@ -43,6 +43,6 @@
 }
 
 .button {
-  box-sizing: border-box;
   height: 78px;
+  border-radius: 20px;
 }
