@@ -9,7 +9,7 @@
   border-radius: 20px;
   padding: var(--spacing--xl);
   flex-direction: column;
-  gap: var(--spacing--lg);
+  gap: var(--spacing--xl);
 
   opacity: 0;
   transition-property: display opacity;
