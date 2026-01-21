@@ -1,3 +1,4 @@
+import { allUsers } from "./mockedUsers";
 import type { Role } from "./roles";
 
 export type User = {
@@ -10,84 +11,18 @@ export type User = {
   details: string;
 };
 
-export const allUsers: User[] = [
-  {
-    id: 1,
-    role: "ADMIN",
-    name: "George Harris",
-    title: "Software Engineer",
-    team: "Security",
-    email: "george.harris@example.com",
-    details: "George is a senior software engineer specializing in security protocols.",
-  },
-  {
-    id: 2,
-    role: "EDITOR",
-    name: "Arianna Russo",
-    title: "Product Designer",
-    team: "Website",
-    email: "arianna.russo@example.com",
-    details: "Arianna is a creative product designer with a passion for user experience.",
-  },
-  {
-    id: 3,
-    role: "VIEWER",
-    name: "Marco Esposito",
-    title: "Software Engineer",
-    team: "Finance",
-    email: "marco.esposito@example.com",
-    details: "Marco is a software engineer with expertise in financial systems.",
-  },
-  {
-    id: 4,
-    role: "GUEST",
-    name: "Sarah Williams",
-    title: "Product Designer",
-    team: "Security",
-    email: "sarah.williams@example.com",
-    details: "Sarah is a talented product designer with a focus on security features.",
-  },
-  {
-    id: 5,
-    role: "GUEST",
-    name: "Emma Clark",
-    title: "Product Manager",
-    team: "Marketing",
-    email: "emma.clark@example.com",
-    details: "Emma is a skilled product manager with experience in marketing.",
-  },
-  {
-    id: 6,
-    role: "VIEWER",
-    name: "Victor Barnes",
-    title: "Product Manager",
-    team: "Finance",
-    email: "victor.barnes@example.com",
-    details: "Victor is an experienced product manager specializing in financial products.",
-  },
-  {
-    id: 7,
-    role: "GUEST",
-    name: "Serena Parisi",
-    title: "Product Designer",
-    team: "Marketing",
-    email: "serena.parisi@example.com",
-    details: "Serena is a talented product designer with a focus on marketing.",
-  },
-];
-
 const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export const searchUsers = async (
   search: string | null,
-  options?: { signal?: AbortSignal },
+  options?: { signal?: AbortSignal; forceFail?: boolean },
 ): Promise<User[]> => {
   if (!search) return [];
 
   console.log(`Searching users with term: "${search}"`);
   options?.signal?.throwIfAborted();
 
-  const fails = Math.random() < 0.1;
+  const fails = options?.forceFail ?? Math.random() < 0.1;
   if (fails) {
     throw new Error("Failed to fetch users");
   }
