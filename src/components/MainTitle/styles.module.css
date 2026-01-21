@@ -3,7 +3,7 @@
   font-weight: 700;
   font-size: clamp(32px, 10vw, 60px);
   place-self: center;
-  color: #292929;
+  color: var(--color-text);
   margin: 0;
 
   .first-word {

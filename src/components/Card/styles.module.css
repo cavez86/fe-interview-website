@@ -1,5 +1,5 @@
 .card {
-  background-color: #fff;
+  background-color: var(--white);
   border-radius: 20px;
   padding: var(--spacing--md);
 
@@ -8,7 +8,7 @@
   gap: var(--spacing--sm);
 
   font-family: var(--font-family);
-  color: #63666a;
+  color: var(--color-secondary);
 
   &.compact {
     border: 1px solid #d3d3dc;
@@ -51,7 +51,7 @@
 
 .email {
   display: block;
-  color: #fb6232;
+  color: var(--color-primary);
   text-decoration: underline;
 }
 

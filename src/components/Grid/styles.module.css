@@ -15,6 +15,6 @@
   font-family: var(--font-family);
   font-size: var(--font-size--md);
   line-height: var(--line-height--md);
-  color: #63666a;
+  color: var(--color-secondary);
   margin-block: var(--spacing--xl);
 }

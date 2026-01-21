@@ -4,7 +4,7 @@
   margin: auto;
   max-width: min(800px, 100% - 2 * var(--inline-spacing));
 
-  background-color: #fff;
+  background-color: var(--white);
   border: none;
   border-radius: 20px;
   padding: var(--spacing--xl);
@@ -30,7 +30,7 @@
     transition-duration: var(--transition-duration);
     transition-behavior: allow-discrete;
     opacity: 0;
-    background-color: #292929;
+    background-color: var(--color-text);
   }
 
   &[open]::backdrop {

@@ -10,7 +10,7 @@
   font-family: var(--font-family);
   font-size: var(--font-size--md);
   line-height: var(--line-height--lg);
-  color: #63666a;
+  color: var(--color-secondary);
   text-transform: uppercase;
 }
 
@@ -26,7 +26,7 @@
   width: 500px;
   height: 78px;
   border-radius: 20px;
-  background-color: #ffffff;
+  background-color: var(--white);
   padding: var(--spacing--sm) var(--spacing--lg);
   font-family: var(--font-family);
   font-size: var(--font-size--lg);
@@ -34,7 +34,7 @@
   border: none;
 
   &::placeholder {
-    color: #63666a;
+    color: var(--color-secondary);
     font-family: var(--font-family);
     font-size: var(--font-size--lg);
     line-height: var(--line-height--lg);
