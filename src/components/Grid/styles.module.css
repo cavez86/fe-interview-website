@@ -8,10 +8,13 @@
 }
 
 .message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: var(--spacing--sm);
   font-family: var(--font-family);
   font-size: var(--font-size--md);
   line-height: var(--line-height--md);
   color: #63666a;
-  text-align: center;
   margin-block: var(--spacing--xl);
 }
