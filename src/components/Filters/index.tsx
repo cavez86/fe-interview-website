@@ -25,6 +25,7 @@ const Filters = () => {
             key={role}
             role={role}
             className={role === roleFilter ? classes.active : ""}
+            aria-pressed={role === roleFilter}
             tag="button"
             type="button"
           />

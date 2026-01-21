@@ -5,9 +5,20 @@ export type ButtonProps = JSX.IntrinsicElements["button"] & {
   label: string;
 };
 
-const Button = ({ label, type = "button", className, ...props }: ButtonProps) => {
+const Button = ({
+  label,
+  type = "button",
+  className,
+  "aria-label": ariaLabel,
+  ...props
+}: ButtonProps) => {
   return (
-    <button type={type} className={`${classes.button} ${className ?? ""}`} {...props}>
+    <button
+      type={type}
+      aria-label={ariaLabel ?? label}
+      className={`${classes.button} ${className ?? ""}`}
+      {...props}
+    >
       {label}
     </button>
   );

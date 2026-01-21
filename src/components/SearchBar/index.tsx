@@ -20,7 +20,7 @@ const SearchBar = () => {
   return (
     <form className={classes.container} action={handleSubmit} data-testid="search-form">
       <label className={classes.label} htmlFor={inputId}>
-        what are you looking for?
+        What are you looking for?
       </label>
       <div className={classes.searchBar}>
         <input

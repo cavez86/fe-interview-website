@@ -4,16 +4,14 @@ import classes from "./styles.module.css";
 
 export type BadgeProps = {
   role: Role;
-  className?: string;
 } & (
   | {
       tag: "span";
+      className?: string;
     }
-  | {
+  | ({
       tag: "button";
-      type?: JSX.IntrinsicElements["button"]["type"];
-      onClick?: () => void;
-    }
+    } & JSX.IntrinsicElements["button"])
 );
 
 const Badge = ({ role, tag, className, ...props }: BadgeProps) => {
@@ -21,6 +19,7 @@ const Badge = ({ role, tag, className, ...props }: BadgeProps) => {
   return (
     <Tag
       className={`${classes.badge} ${classes[role.toLowerCase()]} ${className ?? ""}`}
+      aria-label={role}
       {...props}
     >
       {role}

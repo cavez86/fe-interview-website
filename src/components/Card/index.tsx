@@ -30,7 +30,9 @@ const Card = ({ user, mode = "compact" }: CardProps) => {
 
       <div>
         <div className={classes.label}>Contact information:</div>
-        <div className={`${classes.email} ${classes.text}`}>{user.email}</div>
+        <a href={`mailto:${user.email}`} className={`${classes.email} ${classes.text}`}>
+          {user.email}
+        </a>
       </div>
 
       {mode === "detailed" && (
