@@ -16,6 +16,10 @@
     min-block-size: 100svb;
     min-inline-size: 320px;
   }
+
+  :where(html) {
+    scrollbar-gutter: stable;
+  }
 }
 
 :root {
@@ -25,7 +29,7 @@
   --color-primary: #fb6232;
   --color-secondary: #63666a;
 
-  --font-family: "Poppins", sans-serif;
+  --font-family: 'Poppins', sans-serif;
   --font-size--xl: 24px;
   --font-size--lg: 16px;
   --font-size--md: 14px;
