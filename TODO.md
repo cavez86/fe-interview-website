@@ -4,6 +4,7 @@
 
 - add `clsx` for easier conditional class management
 - add Tanstack Query for data fetching and caching
+- add Zustand of Jotai for improved state management 
 - add git hooks with Husky and lint-staged for better commit consistency and code quality
 - enable React Compiler for better performance
   - while Biome supports it add `eslint` and `eslint-plugin-react-hooks` (see [here](https://github.com/biomejs/biome/discussions/5290#discussioncomment-15267406))
