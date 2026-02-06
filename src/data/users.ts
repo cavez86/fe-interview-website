@@ -17,8 +17,6 @@ export const searchUsers = async (
   search: string | null,
   options?: { signal?: AbortSignal; forceFail?: boolean },
 ): Promise<User[]> => {
-  if (!search) return [];
-
   console.log(`Searching users with term: "${search}"`);
   options?.signal?.throwIfAborted();
 
@@ -29,7 +27,9 @@ export const searchUsers = async (
 
   options?.signal?.throwIfAborted();
   await wait(500);
-  return allUsers.filter((user) => user.name.toLowerCase().includes(search.toLowerCase()));
+  return allUsers.filter(
+    (user) => !search || user.name.toLowerCase().includes(search.toLowerCase()),
+  );
 };
 
 export const filterUsers = (users: User[], role: Role | null): User[] =>

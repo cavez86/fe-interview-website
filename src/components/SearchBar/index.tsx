@@ -10,7 +10,7 @@ const SearchBar = () => {
 
   const handleSubmit = (formData: FormData) => {
     const query = formData.get("search");
-    setSearch(query ? String(query) : null);
+    setSearch(String(query));
   };
 
   useEffect(() => {
