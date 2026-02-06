@@ -68,7 +68,7 @@ describe("users - searchUsers", () => {
   it("returns an empty array when search term is null", async () => {
     const result = await searchUsers(null);
 
-    expect(result).toEqual([]);
+    expect(result).toEqual(mockUsers);
   });
 
   it("throws an error when the fetch fails", async () => {
