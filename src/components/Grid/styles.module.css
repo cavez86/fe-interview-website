@@ -4,7 +4,6 @@
   place-content: start;
   gap: var(--spacing--sm);
   margin-block: var(--spacing--lg);
-  min-height: 50vh;
 }
 
 .message {
@@ -17,4 +16,10 @@
   line-height: var(--line-height--md);
   color: var(--color-secondary);
   margin-block: var(--spacing--xl);
+}
+
+.grid-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 50vh;
 }
