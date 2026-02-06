@@ -1,0 +1,85 @@
+:root {
+  /* Colors */
+  --test-color-primary: #fb6232;
+  --test-color-primary-hover: #ff9771;
+  --test-color-primary-active: #f1602d;
+  --test-color-disabled: #f6f6f6;
+  --test-color-outline: #d3d3d5;
+  --test-color-text: #1b2134;
+  --test-color-text-disabled: #b9b9c0;
+  --test-color-white: #ffffff;
+
+  /* Spacing */
+  --test-spacing-xs: 0.25rem;
+  --test-spacing-s: 0.5rem;
+  --test-spacing-m: 1rem;
+
+  /* Border radius */
+  --test-radius-s: 0.25rem;
+  --test-radius-m: 0.5rem;
+  --test-radius-l: 1rem;
+}
+
+.test-pagination {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--test-spacing-s);
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.test-pagination__button {
+  background-color: var(--test-color-white);
+  border-radius: var(--test-radius-l);
+  border: 0.0625rem solid var(--test-color-outline);
+  color: var(--test-color-text);
+  cursor: pointer;
+  padding: var(--test-spacing-s) var(--test-spacing-m);
+
+  &:hover,
+  &:active {
+    color: var(--test-color-white);
+    transition-duration: 0.2s;
+    transition-property: color, background-color, border-color;
+    transition-timing-function: ease;
+  }
+
+  &:hover {
+    background-color: var(--test-color-primary-hover);
+    border-color: var(--test-color-primary-hover);
+  }
+
+  &:active {
+    background-color: var(--test-color-primary-active);
+    border-color: var(--test-color-primary-active);
+  }
+
+  &:focus-visible {
+    outline: 0.125rem solid var(--test-color-primary);
+    outline-offset: 0.125rem;
+  }
+
+  &:disabled,
+  &[disabled] {
+    background-color: var(--test-color-disabled);
+    border-color: var(--test-color-disabled);
+    color: var(--test-color-text-disabled);
+    cursor: not-allowed;
+  }
+}
+
+.test-pagination__button--current {
+  background: var(--test-color-primary);
+  color: var(--test-color-white);
+  font-weight: bold;
+  min-width: 2.5rem;
+  text-align: center;
+}
+
+.test-pagination__ellipsis {
+  color: var(--test-color-text);
+  padding: var(--test-spacing-s) var(--test-spacing-m);
+  user-select: none;
+}
