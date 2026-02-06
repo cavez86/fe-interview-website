@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 export const useFetch = <T>(
   fetchFn: ({ signal }: { signal: AbortSignal }) => Promise<T>,
@@ -6,12 +6,13 @@ export const useFetch = <T>(
   data: T | null;
   loading: boolean;
   error: Error | null;
+  update: () => void;
 } => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
   const [data, setData] = useState<T | null>(null);
 
-  useEffect(() => {
+  const fetchData = useCallback(() => {
     const abortController = new AbortController();
     setLoading(true);
     setError(null);
@@ -27,10 +28,20 @@ export const useFetch = <T>(
         setLoading(false);
       });
 
+    return abortController;
+  }, [fetchFn]);
+
+  useEffect(() => {
+    const abortController = fetchData();
+
     return () => {
       abortController.abort();
     };
-  }, [fetchFn]);
+  }, [fetchData]);
 
-  return { data, loading, error };
+  const update = () => {
+    fetchData();
+  };
+
+  return { data, loading, error, update };
 };

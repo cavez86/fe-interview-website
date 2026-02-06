@@ -1,13 +1,13 @@
 import { render } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import type { User } from "../../data/users";
+import { useFetch } from "../../hooks/useFetch";
 import { useFilters } from "../../hooks/useFilters";
 import { useModal } from "../../hooks/useModal";
-import { useUsers } from "../../hooks/useUsers";
 import Grid from ".";
 
 vi.mock("../../hooks/useFilters");
-vi.mock("../../hooks/useUsers");
+vi.mock("../../hooks/useFetch");
 vi.mock("../../hooks/useModal");
 
 describe("Grid component", () => {
@@ -24,13 +24,14 @@ describe("Grid component", () => {
       role: null,
       setRoleFilter: vi.fn(),
     });
-    vi.mocked(useUsers).mockReturnValue({
-      users: [
+    vi.mocked(useFetch).mockReturnValue({
+      data: [
         { id: 1, name: "User One", role: "ADMIN" },
         { id: 2, name: "User Two", role: "EDITOR" },
       ] as User[],
       loading: false,
       error: null,
+      update: vi.fn(),
     });
 
     const { getByText } = render(<Grid />);
@@ -47,10 +48,11 @@ describe("Grid component", () => {
       role: "ADMIN",
       setRoleFilter: setRoleFilterMock,
     });
-    vi.mocked(useUsers).mockReturnValue({
-      users: [],
+    vi.mocked(useFetch).mockReturnValue({
+      data: [],
       loading: false,
       error: null,
+      update: vi.fn(),
     });
 
     const { getByText } = render(<Grid />);
@@ -69,10 +71,11 @@ describe("Grid component", () => {
       role: "ADMIN",
       setRoleFilter: setRoleFilterMock,
     });
-    vi.mocked(useUsers).mockReturnValue({
-      users: [],
+    vi.mocked(useFetch).mockReturnValue({
+      data: [],
       loading: false,
       error: null,
+      update: vi.fn(),
     });
 
     const { getByRole } = render(<Grid />);
@@ -89,10 +92,11 @@ describe("Grid component", () => {
       role: null,
       setRoleFilter: vi.fn(),
     });
-    vi.mocked(useUsers).mockReturnValue({
-      users: [],
+    vi.mocked(useFetch).mockReturnValue({
+      data: [],
       loading: true,
       error: null,
+      update: vi.fn(),
     });
 
     const { getByText } = render(<Grid />);
@@ -108,10 +112,11 @@ describe("Grid component", () => {
       role: null,
       setRoleFilter: setRoleFilterMock,
     });
-    vi.mocked(useUsers).mockReturnValue({
-      users: [],
+    vi.mocked(useFetch).mockReturnValue({
+      data: [],
       loading: false,
       error: new Error("Failed to fetch"),
+      update: vi.fn(),
     });
 
     const { getByText, getByRole } = render(<Grid />);

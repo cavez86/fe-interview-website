@@ -1,7 +1,7 @@
-import { useMemo, useState } from "react";
-import { filterUsers } from "../../data/users";
+import { useCallback, useMemo, useState } from "react";
+import { filterUsers, searchUsers, type User } from "../../data/users";
+import { useFetch } from "../../hooks/useFetch";
 import { useFilters } from "../../hooks/useFilters";
-import { useUsers } from "../../hooks/useUsers";
 import Button from "../Button";
 import Card from "../Card";
 import { Pagination } from "../Pagination";
@@ -11,14 +11,22 @@ const ITEMS_PER_PAGE = 8;
 
 const Grid = () => {
   const { search, role, setSearch, setRoleFilter } = useFilters();
-  const { users, loading, error } = useUsers();
+
+  const fetchFn = useCallback(
+    async ({ signal }: { signal: AbortSignal }) => {
+      return await searchUsers(search, { signal });
+    },
+    [search],
+  );
+
+  const { data: users, loading, error, update } = useFetch<User[]>(fetchFn);
 
   const resetFilters = () => {
     setSearch(null);
     setRoleFilter(null);
   };
 
-  const filteredUsers = useMemo(() => filterUsers(users, role), [users, role]);
+  const filteredUsers = useMemo(() => filterUsers(users ?? [], role), [users, role]);
 
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = Math.ceil(filteredUsers.length / ITEMS_PER_PAGE);
@@ -48,7 +56,7 @@ const Grid = () => {
     return (
       <div className={classes.message}>
         <p>Error loading users: {error.message}</p>
-        <Button label="Retry" className={classes.button} onClick={resetFilters} />
+        <Button label="Retry" className={classes.button} onClick={update} />
       </div>
     );
   }
